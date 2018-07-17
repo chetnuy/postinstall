@@ -3,7 +3,7 @@ echo "author:nevernew"
 echo "version: 0.1"
 echo " "
 
-#Бэкапим реестр
+echo "Бэкапим реестр"
 reg export HKLM hklm_backup.reg
 reg export HKCU hkcu_backup.reg
 reg export HKCR hkcr_backup.reg
@@ -87,6 +87,9 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\FileHistory" /v "Disabled" /t 
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "DeviceHistoryEnabled" /t REG_DWORD /d 0 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsAccessCallHistory" /t REG_DWORD /d 0 /f
 
+#Отключаем people
+red add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /v "PeopleBand" /t REG_DWORD /d 0 /f
+
 #onedrive delete
 taskkill /f /im OneDrive.exe
 start %SystemRoot%\System32\OneDriveSetup.exe /uninstall
@@ -120,5 +123,8 @@ schtasks /end /tn "$index"
 schtasks /change /tn "$index" /disable
 }
 
-
+echo "install chocolatey.."
+iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+choco upgrade chocolatey
+choco install googlechrome putty.install -y 
 
