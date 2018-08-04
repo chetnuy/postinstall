@@ -88,11 +88,16 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "DeviceHistor
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsAccessCallHistory" /t REG_DWORD /d 0 /f
 
 echo oтключаем people
+<<<<<<< HEAD
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /v "PeopleBand" /t REG_DWORD /d 0 /f
+=======
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /v "PeopleBand" /t REG_DWORD /d 0 /f
+
+>>>>>>> 8ef339fcf54d9f26ccbbe329d20a9b888c8e8bec
 
 #onedrive delete
 taskkill /f /im OneDrive.exe
-start %SystemRoot%\System32\OneDriveSetup.exe /uninstall
+cmd /c %SystemRoot%\SysWOW64\OneDriveSetup.exe /uninstall
 
 #создаем папку с настройками
 cmd /c "mkdir c:\Users\root\Desktop\settings.{ED7BA470-8E54-465E-825C-99712043E01C}"
